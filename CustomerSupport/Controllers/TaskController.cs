@@ -26,17 +26,10 @@ namespace CustomerSupport.Controllers
         }
 
         // a collection of tickets to store all the tickets in
-        public static List<Ticket> Tickets = new List<Ticket>()
-        {
-            new Ticket { Description = "Homme and alooooooooooooooooooooooooooooooooooooooooooooooong description", DueDate = new DateTime(2020, 6, 3, 1, 1, 1), Id = 1 },
-            new Ticket { Description = "due in less than 1 hour", DueDate = new DateTime(2020, 6, 1, 22, 36, 1), Id = 2 },
-            new Ticket { Description = "due in more than 1 hour", DueDate = new DateTime(2020, 6, 1, 23, 11, 4), Id = 3 },
-            new Ticket { Description = "Eile", DueDate = new DateTime(2020, 5, 31), Id = 4 },
-            new Ticket { Description = "Üleeile", DueDate = new DateTime(2020, 5, 30), Solved = true, Id = 5 }
-        };
+        public static List<Ticket> Tickets = new List<Ticket>();
 
         // counter for ticket Ids
-        public static int counter = 6;
+        public static int counter = 1;
 
         // main page - active tickets list and an entry form
         public ActionResult Index()
