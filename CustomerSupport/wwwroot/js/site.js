@@ -9,7 +9,7 @@ function solved() {
     // If the checkbox is checked, then update the solved-field in controller
     if (checkBox.checked == true)
     {
-        var theUrl = '/Task/Update/'+arguments[0];
+        var theUrl = '/Ticket/Update/'+arguments[0];
         window.location = theUrl;
     }
 }

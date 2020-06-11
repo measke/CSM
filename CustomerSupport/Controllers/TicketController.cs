@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace CustomerSupport.Controllers
 {
-    public class TaskController : Controller
+    public class TicketController : Controller
     {
         //private readonly ILogger<TaskController> _logger;
 
@@ -26,7 +26,7 @@ namespace CustomerSupport.Controllers
         }
 
         // a collection of tickets to store all the tickets in
-        public static List<Ticket> Tickets = new List<Ticket>();
+        public static readonly List<Ticket> Tickets = new List<Ticket>();
 
         // counter for ticket Ids
         public static int counter = 1;

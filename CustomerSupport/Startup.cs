@@ -35,7 +35,7 @@ namespace CustomerSupport
             }
             else
             {
-                app.UseExceptionHandler("/Task/Error");
+                app.UseExceptionHandler("/Ticket/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -50,7 +50,7 @@ namespace CustomerSupport
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Task}/{action=Index}/{id?}");
+                    pattern: "{controller=Ticket}/{action=Index}/{id?}");
             });
         }
     }

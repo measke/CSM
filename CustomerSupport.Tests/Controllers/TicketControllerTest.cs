@@ -7,13 +7,13 @@ using System.Collections.Generic;
 namespace CustomerSupport.Tests.Controllers
 {
     [TestClass]
-    public class TaskControllerTest
+    public class TicketControllerTest
     {
         [TestMethod]
         public void Index()
         {
             // Arrange
-            TaskController controller = new TaskController();
+            TicketController controller = new TicketController();
 
             //Act
             ViewResult result = controller.Index() as ViewResult;
@@ -26,7 +26,7 @@ namespace CustomerSupport.Tests.Controllers
         public void IndexModel()
         {
             // Arrange
-            TaskController controller = new TaskController();
+            TicketController controller = new TicketController();
 
             //Act
             ViewResult result = controller.Index() as ViewResult;
@@ -40,7 +40,7 @@ namespace CustomerSupport.Tests.Controllers
         public void Update()
         {
             // Arrange
-            TaskController controller = new TaskController();
+            TicketController controller = new TicketController();
 
             //Act
             RedirectToActionResult result = controller.Update(1) as RedirectToActionResult;
@@ -53,7 +53,7 @@ namespace CustomerSupport.Tests.Controllers
         public void Add()
         {
             // Arrange
-            TaskController controller = new TaskController();
+            TicketController controller = new TicketController();
 
             //Act
             RedirectToActionResult result = controller.Update(1) as RedirectToActionResult;
