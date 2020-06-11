@@ -1,4 +1,4 @@
-﻿@model List<Ticket>
+﻿@model IndexViewModel
 
 @{
     ViewData["Title"] = "Ticket List";
@@ -24,7 +24,7 @@
 
 <!--active tickets list-->
 
-<h3>@Model.Count() active ticket(s)</h3>
+<h3>@Model.Unsolved.Count() active ticket(s)</h3>
 <table class="table">
     <tr>
         <th>Description</th>
@@ -33,9 +33,42 @@
         <th>Solved?</th>
     </tr>
     <tbody>
-        @foreach (var ticket in Model)
+        @foreach (var ticket in Model.Unsolved)
         {
-        <tr class="@(ticket.OverDue ? "overdue" : "")">
+            <tr class="@(ticket.OverDue ? "overdue" : "")">
+                <td>
+                    @ticket.Description
+                </td>
+                <td>
+                    @ticket.DueDate
+                </td>
+                <td>
+                    @ticket.EntryDate
+                </td>
+                <td>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="solved_table_@ticket.Id" name="solved_table_@ticket.Id" onclick="solved(@ticket.Id)">
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!--solved tickets list-->
+
+<h3>Solved tickets list</h3>
+<table class="table">
+    <tr>
+        <th>Description</th>
+        <th>Due Date</th>
+        <th>Entry Date</th>
+        <th>Solved Date</th>
+    </tr>
+    <tbody>
+        @foreach (var ticket in Model.Solved)
+        {
+        <tr>
             <td>
                 @ticket.Description
             </td>
@@ -46,9 +79,7 @@
                 @ticket.EntryDate
             </td>
             <td>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="solved_table_@ticket.Id" name="solved_table_@ticket.Id" onclick="solved(@ticket.Id)">
-                </div>
+                @ticket.SolvedDate
             </td>
         </tr>
         }

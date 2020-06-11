@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using CustomerSupport.Models;
-using Microsoft.AspNetCore.Authentication;
 
 namespace CustomerSupport.Controllers
 {
@@ -34,21 +31,17 @@ namespace CustomerSupport.Controllers
         // main page - active tickets list and an entry form
         public ActionResult Index()
         {
-            // create a new collection with only unsolved tickets
-            var unsolved = Tickets.Where(x => x.Solved == false).ToList();
+            IndexViewModel viewModel = new IndexViewModel();
 
-            // create a new collection ordered by duedate
-            var ordered = unsolved.OrderBy(x => x.DueDate).ToList();
+            viewModel.Unsolved = Tickets
+                .Where(x => !x.Solved)
+                .OrderBy(x => x.DueDate).ToList();
 
-            //determine if duedate is already past or in the next hour
-            foreach (Ticket ticket in ordered)
-            {
-                int res = DateTime.Compare(t1: DateTime.Now.AddHours(1),
-                                           t2: ticket.DueDate);
-                ticket.OverDue = res == 1;
-            }
+            viewModel.Solved = Tickets
+                .Where(x => x.Solved)
+                .OrderBy(x => x.SolvedDate).ToList();
 
-            return View(ordered);
+            return View(viewModel);
         }
 
         // add a new ticket to Tickets collection from entry form
@@ -69,13 +62,9 @@ namespace CustomerSupport.Controllers
         // Update the solved value when the checkbox is ticked
         public ActionResult Update(int id)
         {
-            foreach(Ticket ticket in Tickets)
-            {
-                if (ticket.Id == id)
-                {
-                    ticket.Solved = true;
-                }
-            }
+            var ticket = Tickets.Single(t => t.Id == id);
+            ticket.Solve();
+
             return RedirectToAction("Index");
         }
     }
